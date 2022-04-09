@@ -14,6 +14,11 @@ pipeline {
                 }
             }
         }
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true, credentialsId: 'Secret text'
+            }
+        }
         stage('Test') {
             steps {
                 sh 'cd SampleWebApp && mvn test'
