@@ -7,6 +7,13 @@ pipeline {
                 git 'https://github.com/wumigit/MyProject2.git'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('mysonar')  {
+                    sh 'mvn -f SampleWebApp/pom.xml clean package sonar:sonar'
+                }
+            }
+        }
         stage('Test') {
             steps {
                 sh 'cd SampleWebApp && mvn test'
