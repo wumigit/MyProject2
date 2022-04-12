@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy to Jfrog') {
             steps {
-                rtDownload (
+                rtUpload (
                     serverId: 'my-jfrog',
                     spec: '''{
                         "files": [
